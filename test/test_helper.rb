@@ -20,16 +20,6 @@ Spork.prefork do
   
   # Run any available migration if needed
   ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
-    
-  # Include devise helpers for controller tests
-  class ActionController::TestCase
-    include Devise::TestHelpers
-  end
-  
-  class ActiveSupport::TestCase
-    self.fixture_path = File.expand_path('../fixtures', __FILE__)
-    fixtures :all
-  end
   
 end
 
