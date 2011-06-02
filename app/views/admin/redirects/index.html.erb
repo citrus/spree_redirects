@@ -1,0 +1,35 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <p><%= button_link_to "New Redirect", new_object_url, :icon => 'add' %></p>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+
+<h1>Listing Redirects</h1>
+
+<table class="index">
+  <thead>
+	<tr>
+    	<th><%= sort_link @search, :old_url,  t('redirect.old_url') %></th>
+    	<th><%= sort_link @search, :new_url, t('redirect.new_url') %></th>
+    	<th><%= t('action') %></th>
+	</tr>
+  </thead>
+  <tbody>
+    <%- @collection.each do |redirect|%>
+    <tr id="<%= dom_id redirect %>">
+      <td><%= redirect.old_url %></td>
+      <td><%= redirect.new_url %></td>
+      <td>
+      	<%= link_to_edit redirect %> &nbsp;
+      	<%= link_to_delete redirect %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate(:prev => "&#171; #{t('previous')}", :next => "#{t('next')} &#187;") %>

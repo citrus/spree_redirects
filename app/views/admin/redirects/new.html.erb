@@ -1,0 +1,11 @@
+<h1><%= t '.new_redirect' %></h1>
+
+<%= render 'shared/error_messages', :target => @redirect %>
+
+<%= form_for([:admin, @redirect]) do |f| %>
+  <%= render "form", :form => f %>
+  <p class="form-buttons">
+    <%= button t('create') %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
+  </p>
+<% end %>
+
