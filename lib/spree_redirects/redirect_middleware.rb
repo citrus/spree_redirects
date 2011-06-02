@@ -1,5 +1,5 @@
 module SpreeRedirects
-  class URLSaver
+  class RedirectMiddleware
     
     def initialize(app)
       @app = app
