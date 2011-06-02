@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
 
   # Spree
   s.add_dependency('spree_core', '>= 0.60.0')
-  s.add_dependency('spree_auth', '>= 0.60.0')
   
   # Development
   s.add_development_dependency('dummier',          '>= 0.1.0')

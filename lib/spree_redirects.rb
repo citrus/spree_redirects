@@ -1,4 +1,5 @@
 require 'spree_core'
+require 'spree_redirects/custom_hooks'
 
 module SpreeRedirects
 
