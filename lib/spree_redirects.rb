@@ -1,3 +1,5 @@
+require 'spree_core'
+
 module SpreeRedirects
 
   class Engine < Rails::Engine
