@@ -9,11 +9,11 @@ class ActiveSupport::IntegrationCase < ActiveSupport::TestCase
   
   def assert_seen(text, opts={})
     if opts[:within]
-      within(selector_for(opts[:within])) do
-        assert page.has_content?(text)
+      within(opts[:within]) do
+        assert has_content?(text)
       end
     else
-      assert page.has_content?(text)
+      assert has_content?(text)
     end
   end
   

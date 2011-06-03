@@ -1,11 +1,11 @@
 <%= form.field_container :old_url do %>
-  <%= form.label :old_url, t('redirect.old_url') %><br />
+  <%= form.label :old_url, t('old_url') %><br />
   <%= form.text_field :old_url, :class => 'text' %>
   <%= error_message_on :redirect, :old_url %>
 <% end %>
 
 <%= form.field_container :new_url do %>
-  <%= form.label :new_url, t('redirect.new_url') %><br />
+  <%= form.label :new_url, t('new_url') %><br />
   <%= form.text_field :new_url, :class => 'text' %>
   <%= error_message_on :redirect, :new_url %>
 <% end %>
