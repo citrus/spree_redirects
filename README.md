@@ -11,6 +11,10 @@ Installation
 
 Install spree_redirects by adding the following to your existing spree site's Gemfile:
 
+    gem 'spree_redirects', '0.1.0'
+
+Or if you want to track the git repo, add this instead:
+
     gem 'spree_redirects', :git => 'git://github.com/citrus/spree_redirects.git'
 
 Now bundle up:
