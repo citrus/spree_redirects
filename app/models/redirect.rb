@@ -18,7 +18,7 @@ class Redirect < ActiveRecord::Base
 
     def normalize_url(url)
       return url if url.blank?
-      url.to_s.downcase.sub!(/^\/*/, '/')
+      url.to_s.downcase.sub!(/^[\/\s]*/, '/').strip
     end
    
 end

@@ -2,10 +2,10 @@ require_relative '../test_helper'
 
 class AdminRedirectsTest < ActiveSupport::IntegrationCase
   
-  def setup
+  setup do
     Redirect.destroy_all
     @labels = %(Old URL, New URL).split(', ')
-    @values = %(booboo, woohoo).split(', ')
+    @values = %(booboo, woohoo).split(', ')        
   end
   
   should "have a link to new redirect" do
@@ -15,7 +15,7 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
     assert_equal "New Redirect", btn.text
   end
   
-  should "get new redirect" do
+  should "get new redirect" do  
     visit new_admin_redirect_path
     assert has_content?("New Redirect")
     within "#new_redirect" do
@@ -47,8 +47,7 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
     assert_flash(:notice, "Redirect has been successfully created!")
   end  
   
-  context "an existing redirect" do
-    
+  context "an existing redirect" do    
     setup do
       @redirect = Redirect.create(:old_url => "booboo", :new_url => "woohoo")
     end
