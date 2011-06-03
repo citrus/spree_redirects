@@ -8,6 +8,11 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
     @values = %(booboo, woohoo).split(', ')        
   end
   
+  should "have a link to redirects from config page" do
+    visit admin_configurations_path
+    assert has_link?("Manage Redirects")
+  end
+  
   should "have a link to new redirect" do
     visit admin_redirects_path
     btn = find(".actions a.button").native
