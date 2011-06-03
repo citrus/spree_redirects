@@ -69,33 +69,5 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
     end
     
   end
-  #  
-  #  
-  #  # no worky without JS :( 
-  #  
-  #  #should "update switch to a foreign address" do
-  #  #  visit edit_admin_redirect_path(@redirect)
-  #  #  
-  #  #  sleep 3
-  #  #  
-  #  #  within ".billing-details" do
-  #  #    uncheck "Use billing address for shipping"
-  #  #  end
-  #  #  
-  #  #  sleep 3
-  #  #  
-  #  #  within ".shipping-details" do
-  #  #    select 'Switzerland', :from => 'Country'
-  #  #    
-  #  #    sleep 5
-  #  #    
-  #  #    
-  #  #  end
-  #  #  
-  #  #  
-  #  #end 
-  #  
-  #  
-  #end
   
 end
