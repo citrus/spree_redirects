@@ -1,33 +1,22 @@
 # Configure Rails Envinronment
 ENV["RAILS_ENV"] = "test"
-require 'spork'
 
-Spork.prefork do
-  
-  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-  require "rails/test_help"
-  require "shoulda"
-  require "factory_girl"
-  require "sqlite3"
-  
-  require "capybara/rails"
-  require "selenium/webdriver"
-  
-  Rails.backtrace_cleaner.remove_silencers!
-  
-  Capybara.default_driver   = :selenium
-  Capybara.default_selector = :css
-  
-  # Run any available migration if needed
-  ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
-  
-end
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require "rails/test_help"
+require "shoulda"
+require "factory_girl"
+require "sqlite3"
 
-Spork.each_run do
+require "capybara/rails"
+require "selenium/webdriver"
 
-  # Load support files
-  Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| load f }
-  
-  include HelperMethods
+Rails.backtrace_cleaner.remove_silencers!
 
-end
+Capybara.default_driver   = :selenium
+Capybara.default_selector = :css
+
+# Run any available migration if needed
+ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
+
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| load f }
