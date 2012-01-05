@@ -1,5 +1,5 @@
-Spree Redirects
-===============
+# Spree Redirects [![Build Status](https://secure.travis-ci.org/citrus/spree_redirects.png)](http://travis-ci.org/citrus/spree_redirects)
+
 
 Spree Redirects adds an interface for redirecting old urls to new ones. It's for when you replace an existing site with a shiny new spree site and want to avoid broken links and broken hearts. 
 
@@ -11,7 +11,7 @@ Installation
 
 Install spree_redirects by adding the following to your existing spree site's Gemfile:
 
-    gem 'spree_redirects', '0.1.0'
+    gem 'spree_redirects', '0.2.0'
 
 Or if you want to track the git repo, add this instead:
 
@@ -47,31 +47,11 @@ Clone this repo to where you develop, bundle up and run dummier to get the show 
     bundle install
     bundle exec dummier
   
-This will generate a fresh rails app in `test/dummy`, install spree_core & spree_redirects, then migrate the test database. Sweet.
+This will generate a fresh rails app in `test/dummy`, install spree_core & spree_redirects, then migrate the test database. Sweet. 
 
+Now just run the tests with:
 
-### If you'd like to use Spork
-    
-Boot the drb server with:
-    
-    bundle exec spork
-        
-In another window, run all tests:
-
-    testdrb test/**/*_test.rb
-    
-Or just a specific test:
-
-    testdrb test/unit/redirect_test.rb
-
-
-### No Spork
-
-If you don't want to spork, just use rake:
-
-    rake
-
-    
+    bundle exec rake    
 
 
 Demo
@@ -94,6 +74,20 @@ Contributors
 So far it's just me; Spencer Steffen. 
 
 If you'd like to help out feel free to fork and send me pull requests!
+
+
+Change Log
+----------
+
+**0.2.0 - 2012/1/5**
+
+* Add support for spree 0.70.x and above
+* Remove spork development dependency
+
+
+**0.1.0 - 2011/6/1**
+
+* Initial Release
 
 
 License
