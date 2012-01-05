@@ -9,9 +9,9 @@ module SpreeRedirects
       # execute the request using our Rails app
       status, headers, body = @app.call(env)
       
-      if status == 404 && url = find_redirect([ env['PATH_INFO'], env['QUERY_STRING'] ].join("?").sub(/[\?\s]*$/, '').strip)
+      if status == 404 && url = find_redirect([ env["PATH_INFO"], env["QUERY_STRING"] ].join("?").sub(/[\?\s]*$/, "").strip)
         # Issue a "Moved permanently" response with the redirect location
-        [ 301, { "Location" => url }, 'Redirecting you to the new location...' ]
+        [ 301, { "Location" => url }, [ "Redirecting..." ] ]
       else
         # Not a 404 or no redirect found, just send the response as is
         [ status, headers, body ]
