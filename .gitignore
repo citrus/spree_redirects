@@ -1,6 +1,7 @@
 *.gem
 .bundle
 .DS_Store
+coverage
 Gemfile.lock
 pkg/*
 lib/dummy_hooks/after_migrate.rb

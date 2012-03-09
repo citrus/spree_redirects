@@ -6,7 +6,7 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
     Spree::Redirect.destroy_all
     @redirect = Spree::Redirect.create(:old_url => "shop-online.html", :new_url => "products")
   end
-  
+    
   should "redirect with simple url" do
     visit @redirect.old_url
     assert_equal @redirect.new_url, current_path
