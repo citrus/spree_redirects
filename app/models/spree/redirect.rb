@@ -1,4 +1,4 @@
-class Redirect < ActiveRecord::Base
+class Spree::Redirect < ActiveRecord::Base
 
   validates :old_url, :presence => true, :uniqueness => { :case_sensitive => false }
   validates :new_url, :presence => true
@@ -18,7 +18,7 @@ class Redirect < ActiveRecord::Base
 
     def normalize_url(url)
       return url if url.blank?
-      url.to_s.downcase.sub!(/^[\/\s]*/, '/').strip
+      url.strip.sub(/^[\/\s]*/, '/')
     end
-   
+
 end

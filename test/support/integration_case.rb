@@ -1,16 +1,13 @@
 # Define a bare test case to use with Capybara
 
-class ActiveSupport::IntegrationCase < ActiveSupport::TestCase
+class ActiveSupport::IntegrationCase < ActionController::TestCase
 
   include Capybara::DSL
-  include Rails.application.routes.url_helpers
   
-  # Extreme hax! wtf is this for anyways.. and why is it erroring?
-  def testmail_admin_mail_method_url(*args)
-    "#wtf"  
+  def spree
+    Spree::Core::Engine.routes.url_helpers
   end
-  alias :testmail_admin_mail_method_path :testmail_admin_mail_method_url
-    
+  
   self.use_transactional_fixtures = false
   
   def assert_seen(text, opts={})

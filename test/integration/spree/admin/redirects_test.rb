@@ -1,29 +1,29 @@
 require "test_helper"
 
-class AdminRedirectsTest < ActiveSupport::IntegrationCase
+class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
   
   setup do
-    Redirect.destroy_all
+    Spree::Redirect.destroy_all
     @labels = %(Old URL, New URL).split(', ')
     @values = %(booboo, woohoo).split(', ')        
   end
   
   should "have a link to redirects from config page" do
-    visit admin_configurations_path
+    visit spree.admin_configurations_path
     assert has_link?("Manage Redirects")
   end
   
   should "have a link to new redirect" do
-    visit admin_redirects_path
+    visit spree.admin_redirects_path
     btn = find(".actions a.button").native
-    assert_match /#{new_admin_redirect_path}$/, btn.attribute('href')
+    assert_match /#{spree.new_admin_redirect_path}$/, btn.attribute('href')
     assert_equal "New Redirect", btn.text
   end
   
   should "get new redirect" do  
-    visit new_admin_redirect_path
+    visit spree.new_admin_redirect_path
     assert has_content?("New Redirect")
-    within "#new_redirect" do
+    within "#new_spree_redirect" do
       @labels.each do |f|
         assert has_field?(f)
       end
@@ -31,7 +31,7 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
   end
     
   should "validate redirect" do
-    visit new_admin_redirect_path
+    visit spree.new_admin_redirect_path
     click_button "Create"
     within "#errorExplanation" do
       assert_seen "3 errors prohibited this record from being saved:"
@@ -42,8 +42,8 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
   end
   
   should "create a redirect" do
-    visit new_admin_redirect_path
-    within "#new_redirect" do
+    visit spree.new_admin_redirect_path
+    within "#new_spree_redirect" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
       end
@@ -54,22 +54,22 @@ class AdminRedirectsTest < ActiveSupport::IntegrationCase
   
   context "an existing redirect" do    
     setup do
-      @redirect = Redirect.create(:old_url => "booboo", :new_url => "woohoo")
+      @redirect = Spree::Redirect.create(:old_url => "booboo", :new_url => "woohoo")
     end
     
     should "update redirect, user and addresses" do
-      visit edit_admin_redirect_path(@redirect)
+      visit spree.edit_admin_redirect_path(@redirect)
       
-      within "#edit_redirect_#{@redirect.id}" do
+      within "#edit_spree_redirect_#{@redirect.id}" do
         @labels.each_with_index do |label, index|
         	fill_in label, :with => @values[index].reverse      
         end
       end
       click_button "Update"
-      assert_equal admin_redirects_path, current_path      
+      assert_equal spree.admin_redirects_path, current_path      
       assert_flash(:notice, "Redirect has been successfully updated!")
-      assert_seen "/ooboob", :within => "tr#redirect_#{@redirect.id} td:first-child"
-      assert_seen "/oohoow", :within => "tr#redirect_#{@redirect.id} td:nth-child(2)"
+      assert_seen "/ooboob", :within => "tr#spree_redirect_#{@redirect.id} td:first-child"
+      assert_seen "/oohoow", :within => "tr#spree_redirect_#{@redirect.id} td:nth-child(2)"
     end
     
   end

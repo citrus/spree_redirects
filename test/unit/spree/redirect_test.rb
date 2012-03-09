@@ -3,8 +3,8 @@ require "test_helper"
 class RedirectTest < ActiveSupport::TestCase
   
   def setup    
-    Redirect.destroy_all
-    @redirect = Redirect.new
+    Spree::Redirect.destroy_all
+    @redirect = Spree::Redirect.new
   end
   
   should "require urls to be set" do

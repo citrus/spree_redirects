@@ -1,7 +1,7 @@
-class Admin::RedirectsController < Admin::ResourceController
+class Spree::Admin::RedirectsController < Spree::Admin::ResourceController
 
   def new
-    @redirect = Redirect.new
+    @redirect = Spree::Redirect.new
   end
     
   private
@@ -9,7 +9,7 @@ class Admin::RedirectsController < Admin::ResourceController
     def collection
       params[:search] ||= {}
       params[:search][:meta_sort] ||= "old_url.asc"
-      @search = Redirect.search(params[:search])
+      @search = Spree::Redirect.search(params[:search])
       @collection = @search.page(params[:page]).per(Spree::Config[:orders_per_page])
     end
 

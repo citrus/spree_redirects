@@ -1,6 +1,6 @@
-<%= render :partial => 'admin/shared/configuration_menu' %>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<%= render 'shared/error_messages', :target => @redirect %>
+<%= render 'spree/shared/error_messages', :target => @redirect %>
 
 <%= form_for([:admin, @redirect]) do |f| %>
   <%= render "form", :form => f %>

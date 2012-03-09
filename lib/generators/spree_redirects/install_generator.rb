@@ -32,6 +32,7 @@ module SpreeRedirects
       
       def copy_migrations
         migration_template "db/migrate/create_redirects.rb", "db/migrate/create_redirects.rb"        
+        migration_template "db/migrate/add_spree_namespace_to_redirects.rb", "db/migrate/add_spree_namespace_to_redirects.rb"        
       end
 
     end
