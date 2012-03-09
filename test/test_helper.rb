@@ -1,5 +1,8 @@
-require "simplecov"
-SimpleCov.start "rails"
+begin
+  require "simplecov"
+  SimpleCov.start "rails"
+rescue LoadError => e
+end
 
 # Configure Rails Envinronment
 ENV["RAILS_ENV"] = "test"
