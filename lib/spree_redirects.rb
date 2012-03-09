@@ -1,26 +1,8 @@
-require 'spree_core'
-require 'spree_redirects/redirect_middleware'
+require "spree_core"
+
+require "spree_redirects/version"
+require "spree_redirects/engine"
+require "spree_redirects/redirect_middleware"
 
 module SpreeRedirects
-
-  class Engine < Rails::Engine
-    
-    initializer "redirect middleware" do |app|
-      app.middleware.insert_after ::Rack::Lock, ::SpreeRedirects::RedirectMiddleware
-    end
-
-    config.to_prepare do
-      #loads application's model / class decorators
-      Dir.glob File.expand_path("../../app/**/*_decorator.rb", __FILE__) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-
-      #loads application's deface view overrides
-      Dir.glob File.expand_path("../../app/overrides/*.rb", __FILE__) do |c|
-        Rails.application.config.cache_classes ? require(c) : load(c)
-      end
-    end
-
-  end
-
 end
