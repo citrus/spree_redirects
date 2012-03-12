@@ -1,6 +1,6 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render :partial => 'spree/admin/shared/configuration_menu' unless request.xhr? %>
 
-<h1><%= t '.new_redirect' %></h1>
+<h3><%= t '.new_redirect' %></h3>
 
 <%= render 'spree/shared/error_messages', :target => @redirect %>
 
@@ -11,3 +11,16 @@
   </p>
 <% end %>
 
+<% if request.xhr? %>
+  <script type="text/javascript">
+  //<![CDATA[
+    (function($){
+      $("#new_spree_redirect .form-buttons a").click(function(evt) {
+        evt.preventDefault();
+        $("#new_redirect_form").empty();
+        $("#new_redirect_link").show();
+      });
+    })(jQuery);
+  //]]>
+  </script>
+<% end %>

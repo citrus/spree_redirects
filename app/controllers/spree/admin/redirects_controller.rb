@@ -2,6 +2,7 @@ class Spree::Admin::RedirectsController < Spree::Admin::ResourceController
 
   def new
     @redirect = Spree::Redirect.new
+    render :layout => !request.xhr?
   end
     
   private

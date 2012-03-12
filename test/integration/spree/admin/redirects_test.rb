@@ -15,7 +15,7 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
   
   should "have a link to new redirect" do
     visit spree.admin_redirects_path
-    btn = find(".actions a.button").native
+    btn = find("#new_redirect_link").native
     assert_match /#{spree.new_admin_redirect_path}$/, btn.attribute('href')
     assert_equal "New Redirect", btn.text
   end
@@ -42,7 +42,8 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
   end
   
   should "create a redirect" do
-    visit spree.new_admin_redirect_path
+    visit spree.admin_redirects_path
+    click_link "New Redirect"
     within "#new_spree_redirect" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      

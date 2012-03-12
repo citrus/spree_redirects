@@ -1,15 +1,5 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <p><%= button_link_to "New Redirect", new_object_url, :icon => 'add' %></p>
-    </li>
-  </ul>
-  <br class='clear' />
-</div>
-
-
 <h1>Listing Redirects</h1>
 
 <table class="index">
@@ -35,3 +25,23 @@
 </table>
 
 <%= paginate @collection %>
+
+<div id="new_redirect_form"></div>
+<br/>
+<p>
+  <%= link_to icon('add') + ' ' + t(".new_redirect"), new_admin_redirect_url, :id => "new_redirect_link" %>
+</p>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){  
+      
+      jQuery('#new_redirect_link').click(function(event) { 
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#new_redirect_form').html(r);} });
+      });
+      
+    });
+  </script>
+<% end %>
