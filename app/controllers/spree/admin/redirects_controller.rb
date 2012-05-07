@@ -8,10 +8,10 @@ class Spree::Admin::RedirectsController < Spree::Admin::ResourceController
   private
     
     def collection
-      params[:search] ||= {}
-      params[:search][:meta_sort] ||= "old_url.asc"
-      @search = Spree::Redirect.search(params[:search])
-      @collection = @search.page(params[:page]).per(Spree::Config[:orders_per_page])
+      params[:q] ||= {}
+      params[:q][:s] ||= "old_url asc"
+      @search = Spree::Redirect.search(params[:q])
+      @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
     end
 
 end

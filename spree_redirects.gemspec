@@ -19,9 +19,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency('spree_core', '~> 1.0.0')
+  s.add_runtime_dependency('spree_core', '~> 1.1.0')
   
-  s.add_development_dependency('dummier',      '~> 0.3.0')
+  s.add_development_dependency('dummier',      '~> 0.3.2')
   s.add_development_dependency('shoulda',      '~> 3.0.0')
   s.add_development_dependency('factory_girl', '~> 2.6.0')
   s.add_development_dependency('capybara',     '~> 1.1.2')

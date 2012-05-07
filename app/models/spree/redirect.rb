@@ -1,4 +1,6 @@
 class Spree::Redirect < ActiveRecord::Base
+  
+  attr_accessible :old_url, :new_url
 
   validates :old_url, :presence => true, :uniqueness => { :case_sensitive => false }
   validates :new_url, :presence => true

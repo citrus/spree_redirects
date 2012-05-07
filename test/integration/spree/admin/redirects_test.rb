@@ -23,7 +23,7 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
   should "get new redirect" do  
     visit spree.new_admin_redirect_path
     assert has_content?("New Redirect")
-    within "#new_spree_redirect" do
+    within "#new_redirect" do
       @labels.each do |f|
         assert has_field?(f)
       end
@@ -44,7 +44,7 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
   should "create a redirect" do
     visit spree.admin_redirects_path
     click_link "New Redirect"
-    within "#new_spree_redirect" do
+    within "#new_redirect" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
       end
@@ -61,7 +61,7 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
     should "update redirect, user and addresses" do
       visit spree.edit_admin_redirect_path(@redirect)
       
-      within "#edit_spree_redirect_#{@redirect.id}" do
+      within "#edit_redirect_#{@redirect.id}" do
         @labels.each_with_index do |label, index|
         	fill_in label, :with => @values[index].reverse      
         end
@@ -69,8 +69,8 @@ class Spree::Admin::RedirectsTest < ActiveSupport::IntegrationCase
       click_button "Update"
       assert_equal spree.admin_redirects_path, current_path      
       assert_flash(:notice, "Redirect has been successfully updated!")
-      assert_seen "/ooboob", :within => "tr#spree_redirect_#{@redirect.id} td:first-child"
-      assert_seen "/oohoow", :within => "tr#spree_redirect_#{@redirect.id} td:nth-child(2)"
+      assert_seen "/ooboob", :within => "tr#redirect_#{@redirect.id} td:first-child"
+      assert_seen "/oohoow", :within => "tr#redirect_#{@redirect.id} td:nth-child(2)"
     end
     
   end
