@@ -102,6 +102,16 @@ If you'd like to help out feel free to fork and send me pull requests!
 Change Log
 ------------------------------------------------------------------------------
 
+**2012/5/7**
+
+* Add support for spree 1.1.x
+
+
+**2012/3/14**
+
+* Add support for spree 1.0.x
+
+
 **0.2.0 - 2012/1/5**
 
 * Add support for spree 0.70.x and above
