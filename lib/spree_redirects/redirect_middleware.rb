@@ -6,15 +6,25 @@ module SpreeRedirects
     end
    
     def call(env)
-      status, headers, body = @app.call(env)
-      path = [ env["PATH_INFO"], env["QUERY_STRING"] ].join("?").sub(/[\/\?\s]*$/, "").strip
-      if status == 404 && url = find_redirect(path)
-        # Issue a "Moved permanently" response with the redirect location
-        [ 301, { "Location" => url }, [ "Redirecting..." ] ]
-      else
-        # Not a 404 or no redirect found, just send the response as is
-        [ status, headers, body ]
+      begin
+        # when consider_all_requests_local is false, an exception is raised for 404
+        status, headers, body = @app.call(env)
+      rescue ActionController::RoutingError => e
+        routing_error = e
       end
+
+      if (routing_error.present? or status == 404)
+        path = [ env["PATH_INFO"], env["QUERY_STRING"] ].join("?").sub(/[\/\?\s]*$/, "").strip
+
+        if url = find_redirect(path)
+          # Issue a "Moved permanently" response with the redirect location
+          return [ 301, { "Location" => url }, [ "Redirecting..." ] ]
+        end
+      else
+        raise routing_error unless Rails.configuration.consider_all_requests_local
+      end
+
+      [ status, headers, body ]
     end
     
     def find_redirect(url)
