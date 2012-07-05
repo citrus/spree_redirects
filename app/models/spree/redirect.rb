@@ -19,7 +19,7 @@ class Spree::Redirect < ActiveRecord::Base
     end
     
     def normalize_url(url)
-      return url if url.blank?
+      return url if url.blank? or url == '/'
       url.strip.sub(/^[\/\s]*/, "/").sub(/\/+$/, "")
     end
 
