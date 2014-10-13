@@ -9,3 +9,9 @@
   <%= form.text_field :new_url, :class => 'text' %>
   <%= error_message_on :redirect, :new_url %>
 <% end %>
+
+<%= form.field_container :status_code do %>
+  <%= form.label :status_code, t('status_code') %><br />
+  <%= form.select :status_code, [["Permanent (301)", 301], ["Temporary (302)", 302]],:class => 'text' %>
+  <%= error_message_on :redirect, :status_code %>
+<% end %>
