@@ -7,6 +7,7 @@
 <% end %>
 
 <h1>Listing Redirects</h1>
+foo
 
 <table class="index">
   <thead>
@@ -20,8 +21,8 @@
   <tbody>
     <%- @collection.each do |redirect|%>
     <tr id="<%= dom_id redirect %>">
-      <td><%= redirect.old_url %></td>
-      <td><%= redirect.new_url %></td>
+      <td style="max-width: 200px; overflow: hidden;"><%= redirect.old_url %></td>
+      <td style="max-width: 200px; overflow: hidden;"><%= redirect.new_url %></td>
       <td>
         <%= redirect.status_code_presentation %>
       </td>
