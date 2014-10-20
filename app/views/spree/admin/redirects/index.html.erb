@@ -1,5 +1,11 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to icon('add') + ' ' + t(".new_redirect"), new_admin_redirect_url, :id => "new_redirect_link" %>
+  </li>
+<% end %>
+
 <h1>Listing Redirects</h1>
 
 <table class="index">
@@ -7,6 +13,7 @@
 	<tr>
     	<th><%= sort_link @search, :old_url,  t('redirect.old_url') %></th>
     	<th><%= sort_link @search, :new_url, t('redirect.new_url') %></th>
+      <th>Status Code</th>
     	<th><%= t('action') %></th>
 	</tr>
   </thead>
@@ -15,6 +22,9 @@
     <tr id="<%= dom_id redirect %>">
       <td><%= redirect.old_url %></td>
       <td><%= redirect.new_url %></td>
+      <td>
+        <%= redirect.status_code_presentation %>
+      </td>
       <td>
       	<%= link_to_edit redirect %> &nbsp;
       	<%= link_to_delete redirect %>
@@ -27,21 +37,17 @@
 <%= paginate @collection %>
 
 <div id="new_redirect_form"></div>
-<br/>
-<p>
-  <%= link_to icon('add') + ' ' + t(".new_redirect"), new_admin_redirect_url, :id => "new_redirect_link" %>
-</p>
 
 <% content_for :head do %>
   <script type="text/javascript">
-    jQuery(document).ready(function(){  
-      
-      jQuery('#new_redirect_link').click(function(event) { 
+    jQuery(document).ready(function(){
+
+      jQuery('#new_redirect_link').click(function(event) {
         event.preventDefault();
         jQuery(this).hide();
         jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#new_redirect_form').html(r);} });
       });
-      
+
     });
   </script>
 <% end %>
